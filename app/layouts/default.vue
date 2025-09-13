@@ -1,17 +1,28 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const auth_store = useAuthStore();
+const { user } = storeToRefs(auth_store);
+</script>
 
 <template>
   <div class="bg-gray-50 text-gray-800">
     <header class="bg-white shadow">
       <div class="container mx-auto flex items-center justify-between py-4 px-6">
         <h1 class="text-xl font-bold text-indigo-600">Brand</h1>
-        <nav class="space-x-6">
+        <nav class="menu space-x-6">
           <NuxtLink to="/" class="hover:text-indigo-600">Home</NuxtLink>
           <NuxtLink to="/post" class="hover:text-indigo-600">Post</NuxtLink>
         </nav>
-        <a href="#" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+        <button
+          v-if="user"
+          class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
           Sign Up
-        </a>
+        </button>
+        <NuxtLink
+          v-else
+          to="/login"
+          class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+          Login
+        </NuxtLink>
       </div>
     </header>
     <div class="min-h-screen container mx-auto px-6 py-10">
@@ -30,7 +41,7 @@
   </div>
 </template>
 <style>
-.router-link-exact-active {
+.menu .router-link-exact-active {
   font-weight: bold;
   color: #4f46e5; /* Indigo-600 */
 }
