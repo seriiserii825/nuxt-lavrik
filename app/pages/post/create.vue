@@ -25,6 +25,7 @@ async function onSubmit() {
     console.log(response, "response");
     navigateTo("/");
   } catch (error) {
+    useSweetAlert("Error", "Could not create post", error.message);
     console.error("Create post error", error);
   }
 }
