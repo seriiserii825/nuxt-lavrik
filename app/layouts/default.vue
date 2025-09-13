@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <body class="bg-gray-50 text-gray-800">
+  <div class="bg-gray-50 text-gray-800">
     <header class="bg-white shadow">
       <div class="container mx-auto flex items-center justify-between py-4 px-6">
         <h1 class="text-xl font-bold text-indigo-600">Brand</h1>
@@ -27,7 +27,7 @@
         </div>
       </div>
     </footer>
-  </body>
+  </div>
 </template>
 <style>
 .router-link-exact-active {
