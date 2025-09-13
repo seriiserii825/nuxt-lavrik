@@ -18,7 +18,7 @@ async function onSubmit() {
 
     auth_store.setUser(response.user);
     auth_store.setToken(response.token);
-    console.log(response, "response");
+    navigateTo("/");
   } catch (error) {
     auth_store.setUser(null);
     auth_store.setToken(null);
@@ -28,7 +28,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <div class="login bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="login flex-[600px] flex items-center justify-center">
     <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
       <h1 class="text-2xl font-bold text-center text-indigo-600 mb-6">Login</h1>
 
@@ -70,12 +70,6 @@ async function onSubmit() {
           Login
         </button>
       </form>
-
-      <!-- Register Link -->
-      <p class="mt-6 text-center text-sm text-gray-600">
-        Don’t have an account?
-        <a href="/register" class="text-indigo-600 font-semibold hover:underline">Sign up</a>
-      </p>
     </div>
   </div>
 </template>

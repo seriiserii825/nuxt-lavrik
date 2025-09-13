@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const auth_store = useAuthStore();
 const { user } = storeToRefs(auth_store);
+function logout(){
+  auth_store.logout();
+}
 </script>
 
 <template>
@@ -14,6 +17,7 @@ const { user } = storeToRefs(auth_store);
         </nav>
         <button
           v-if="user"
+          @click="logout"
           class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
           Sign Up
         </button>
@@ -25,7 +29,7 @@ const { user } = storeToRefs(auth_store);
         </NuxtLink>
       </div>
     </header>
-    <div class="min-h-screen container mx-auto px-6 py-10">
+    <div class="min-h-[80vh] container mx-auto px-6 py-10 flex justify-center items-center">
       <slot />
     </div>
     <footer class="bg-gray-900 text-gray-400 py-8">
