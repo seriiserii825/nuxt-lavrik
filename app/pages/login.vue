@@ -17,9 +17,11 @@ async function onSubmit() {
     });
 
     auth_store.setUser(response.user);
+    auth_store.setToken(response.token);
     console.log(response, "response");
   } catch (error) {
     auth_store.setUser(null);
+    auth_store.setToken(null);
     console.error("Login failed:", error);
   }
 }
