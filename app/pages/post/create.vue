@@ -1,7 +1,68 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { $api } = useNuxtApp();
+const form = ref({
+  title: "",
+  url: "",
+  content: "",
+});
+
+watch(
+  () => form.value.title,
+  (newTitle) => {
+    form.value.url = newTitle
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)+/g, "");
+  }
+);
+
+async function onSubmit() {
+  try {
+    const response = await $api("/posts", {
+      method: "POST",
+      body: { ...form.value },
+    });
+    console.log(response, "response");
+    navigateTo("/");
+  } catch (error) {
+    console.error("Create post error", error);
+  }
+}
+</script>
 
 <template>
-  <div class="post-create flex-[600px] flex items-center justify-center">
-    <h2 class="text-2xl font-bold text-center text-indigo-600 mb-6">Create Post</h2>
-  </div>
+  <BlockForm title="Create Post">
+    <form @submit.prevent="onSubmit" class="space-y-6">
+      <UiInput
+        v-model="form.title"
+        label="Title"
+        type="text"
+        id="url"
+        placeholder="Enter post title:"
+        required />
+
+      <UiInput
+        v-model="form.url"
+        label="URL"
+        type="text"
+        id="url"
+        placeholder="Enter post URL:"
+        :disabled="true"
+        required />
+
+      <UiTextarea
+        v-model="form.content"
+        label="Content"
+        id="content"
+        placeholder="Enter post content:"
+        required />
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition">
+        Submit
+      </button>
+    </form>
+  </BlockForm>
 </template>

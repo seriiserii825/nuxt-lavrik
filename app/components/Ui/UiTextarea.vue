@@ -1,9 +1,5 @@
 <script setup lang="ts">
 defineProps({
-  type: {
-    type: String,
-    default: "text",
-  },
   label: {
     type: String,
     required: false,
@@ -18,13 +14,8 @@ defineProps({
     type: String,
     required: true,
   },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
   errors: {
-    type: Array,
+    type: Array as () => string[],
     required: false,
     default: () => [],
   },
@@ -33,30 +24,44 @@ defineProps({
     required: false,
     default: false,
   },
+  rows: {
+    type: Number,
+    required: false,
+    default: 4, // sensible default
+  },
 });
 
 const value = defineModel<string>({ default: "" });
 </script>
+
 <template>
-  <div class="input">
-    <label class="block text-sm font-medium text-gray-700 mb-1" v-if="label" :for="id">{{ label }}</label>
-    <input
+  <div class="textarea">
+    <label
+      v-if="label"
+      :for="id"
+      class="block text-sm font-medium text-gray-700 mb-1"
+    >
+      {{ label }}
+    </label>
+
+    <textarea
       :id="id"
       v-model="value"
       :name="id"
-      :type="type"
       :placeholder="placeholder"
-      :disabled="disabled"
       :required="required"
-      :class="{ 'bg-gray-100 cursor-not-allowed': disabled }"
-      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
-    <div v-if="errors && errors.length" class="input__message input__message--error">
+      :rows="rows"
+      class="w-full px-4 py-2 border border-gray-300 rounded-md resize-y focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+    />
+
+    <div v-if="errors && errors.length" class="textarea__message textarea__message--error">
       <p v-for="(error, index) in errors" :key="index">{{ error }}</p>
     </div>
   </div>
 </template>
+
 <style lang="scss">
-.input {
+.textarea {
   &__message {
     margin-top: 0.6rem;
     font-size: 1.2rem;

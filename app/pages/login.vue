@@ -28,34 +28,30 @@ async function onSubmit() {
 </script>
 
 <template>
-  <div class="login flex-[600px] flex items-center justify-center">
-    <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
-      <h1 class="text-2xl font-bold text-center text-indigo-600 mb-6">Login</h1>
+  <BlockForm title="Login">
+    <form @submit.prevent="onSubmit" class="space-y-6">
+      <UiInput
+        v-model="form.login"
+        label="Login"
+        type="text"
+        id="login"
+        placeholder="Enter your login"
+        required />
 
-      <form @submit.prevent="onSubmit" class="space-y-6">
-        <UiInput
-          v-model="form.login"
-          label="Login"
-          type="text"
-          id="login"
-          placeholder="Enter your login"
-          required />
+      <UiInput
+        v-model="form.password"
+        label="Password"
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+        required />
 
-        <UiInput
-          v-model="form.password"
-          label="Password"
-          type="password"
-          id="password"
-          placeholder="Enter your password"
-          required />
-
-        <!-- Submit Button -->
-        <button
-          type="submit"
-          class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition">
-          Login
-        </button>
-      </form>
-    </div>
-  </div>
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition">
+        Login
+      </button>
+    </form>
+  </BlockForm>
 </template>
