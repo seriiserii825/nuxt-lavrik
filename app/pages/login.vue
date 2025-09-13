@@ -33,35 +33,21 @@ async function onSubmit() {
       <h1 class="text-2xl font-bold text-center text-indigo-600 mb-6">Login</h1>
 
       <form @submit.prevent="onSubmit" class="space-y-6">
-        <!-- Username / Email -->
-        <div>
-          <label for="login" class="block text-sm font-medium text-gray-700 mb-1">
-            Username or Email
-          </label>
-          <input
-            type="text"
-            id="login"
-            name="login"
-            v-model="form.login"
-            placeholder="Enter your username"
-            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            required />
-        </div>
+        <UiInput
+          v-model="form.login"
+          label="Login"
+          type="text"
+          id="login"
+          placeholder="Enter your login"
+          required />
 
-        <!-- Password -->
-        <div>
-          <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            v-model="form.password"
-            placeholder="Enter your password"
-            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            required />
-        </div>
+        <UiInput
+          v-model="form.password"
+          label="Password"
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          required />
 
         <!-- Submit Button -->
         <button
