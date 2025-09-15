@@ -5,8 +5,10 @@ export default defineNuxtPlugin({
     const auth_store = useAuthStore();
     const token = auth_store.token;
 
+    const config = useRuntimeConfig();
+
     const api = $fetch.create({
-      baseURL: "http://localhost:3001",
+      baseURL: config.public.apiBase,
       onRequest({ request, options, error }) {
         options.headers.set("Content-type", "application/json");
         options.headers.set("Accept", "application/json");
