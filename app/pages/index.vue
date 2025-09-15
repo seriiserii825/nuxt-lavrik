@@ -1,7 +1,4 @@
-<script setup lang="ts">
-const auth_store = useAuthStore();
-console.log(auth_store.token, "auth_store.token");
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="home">

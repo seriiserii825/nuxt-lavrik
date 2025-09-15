@@ -13,7 +13,7 @@ function logout(){
         <h1 class="text-xl font-bold text-indigo-600">Brand</h1>
         <nav class="menu space-x-6">
           <NuxtLink to="/" class="hover:text-indigo-600">Home</NuxtLink>
-          <NuxtLink to="/post" class="hover:text-indigo-600">Post</NuxtLink>
+          <NuxtLink to="/posts" class="hover:text-indigo-600">Posts</NuxtLink>
         </nav>
         <button
           v-if="user"

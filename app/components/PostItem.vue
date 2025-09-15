@@ -13,7 +13,7 @@ const props = defineProps({
 <template>
   <article class="bg-white rounded-lg shadow hover:shadow-lg transition p-6 mb-6">
     <h3 class="text-2xl font-semibold text-indigo-600 mb-2">
-      <NuxtLink :to="`/post/${post.id}`">{{ post.title }}</NuxtLink>
+      <NuxtLink :to="`/posts/${post.id}`">{{ post.title }}</NuxtLink>
     </h3>
     <p class="text-sm text-gray-500 mb-4">
       By
@@ -25,7 +25,7 @@ const props = defineProps({
       {{ post.content }}
     </p>
     <NuxtLink
-      :to="`/post/${post.id}`"
+      :to="`/posts/${post.id}`"
       class="inline-block text-indigo-600 font-semibold hover:underline">
       Read More →
     </NuxtLink>
