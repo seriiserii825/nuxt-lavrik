@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: ["auth"],
+});
 const { $api } = useNuxtApp();
 const form = ref({
   title: "",
@@ -13,7 +16,7 @@ watch(
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)+/g, "");
-  }
+  },
 );
 
 async function onSubmit() {
