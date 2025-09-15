@@ -1,8 +1,9 @@
 <script setup lang="ts">
 const auth_store = useAuthStore();
 const { user } = storeToRefs(auth_store);
-function logout(){
+function logout() {
   auth_store.logout();
+  navigateTo("/login");
 }
 </script>
 
