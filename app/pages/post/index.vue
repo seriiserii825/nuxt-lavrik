@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TPost } from "~/types/TPost";
 
-const { data, pending, error } = await useAPI<TPost[]>("posts");
+const { data, pending, error } = await useAPI<TPost[]>("/posts");
 </script>
 
 <template>
