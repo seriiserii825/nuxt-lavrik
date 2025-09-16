@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type { TPost } from "~/types/TPost";
-
-const { data, pending, error } = await useFetchApp<TPost[]>("/posts");
+const { error, pending, data } = await useAsyncData("posts", () => useNuxtApp().$api.posts.all());
 </script>
 
 <template>

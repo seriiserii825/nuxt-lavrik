@@ -1,3 +1,6 @@
+import { createAuthRepository } from "~/repository/createAuthRepository";
+import { createPostsRepository } from "~/repository/createPostsRepository";
+
 export default defineNuxtPlugin({
   name: "fetch",
   parallel: true,
@@ -22,10 +25,16 @@ export default defineNuxtPlugin({
       },
     });
 
+    const api = {
+      auth: createAuthRepository(fetchApi),
+      posts: createPostsRepository(fetchApi),
+    };
+
     // Expose to useNuxtApp().$api
     return {
       provide: {
         fetchApi,
+        api,
       },
     };
   },

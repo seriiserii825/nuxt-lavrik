@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { TPostStore } from "~/types/TPostStore";
+
 definePageMeta({
   middleware: ["auth"],
 });
-const { $fetchApi } = useNuxtApp();
-const form = ref({
+const form = ref<TPostStore>({
   title: "",
   url: "",
   content: "",
@@ -21,10 +22,7 @@ watch(
 
 async function onSubmit() {
   try {
-    const response = await $fetchApi("/posts", {
-      method: "POST",
-      body: { ...form.value },
-    });
+    const response = await useNuxtApp().$api.posts.add(form.value);
     console.log(response, "response");
     navigateTo("/posts");
   } catch (error) {

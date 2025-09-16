@@ -1,21 +1,16 @@
 <script setup lang="ts">
-import type { TLoginResponse } from "~/types/TLoginResponse";
+import type { TLoginStore } from "~/types/TLoginStore";
+
 const auth_store = useAuthStore();
 
-const form = ref({
+const form = ref<TLoginStore>({
   login: "admin",
   password: "password",
 });
 
-const { $fetchApi } = useNuxtApp();
-
 async function onSubmit() {
   try {
-    const response = await $fetchApi<TLoginResponse>("/auth/login", {
-      method: "POST",
-      body: { login: form.value.login, password: form.value.password },
-    });
-
+    const response = await useNuxtApp().$api.auth.login(form.value);
     auth_store.setUser(response.user);
     auth_store.setToken(response.token);
     navigateTo("/");
