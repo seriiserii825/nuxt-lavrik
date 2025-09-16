@@ -7,11 +7,11 @@ const form = ref({
   password: "password",
 });
 
-const { $api } = useNuxtApp();
+const { $fetchApi } = useNuxtApp();
 
 async function onSubmit() {
   try {
-    const response = await $api<TLoginResponse>("/auth/login", {
+    const response = await $fetchApi<TLoginResponse>("/auth/login", {
       method: "POST",
       body: { login: form.value.login, password: form.value.password },
     });

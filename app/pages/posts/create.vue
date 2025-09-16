@@ -2,7 +2,7 @@
 definePageMeta({
   middleware: ["auth"],
 });
-const { $api } = useNuxtApp();
+const { $fetchApi } = useNuxtApp();
 const form = ref({
   title: "",
   url: "",
@@ -16,19 +16,19 @@ watch(
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)+/g, "");
-  },
+  }
 );
 
 async function onSubmit() {
   try {
-    const response = await $api("/posts", {
+    const response = await $fetchApi("/posts", {
       method: "POST",
       body: { ...form.value },
     });
     console.log(response, "response");
-    navigateTo("/");
+    navigateTo("/posts");
   } catch (error) {
-    useSweetAlert("Error", "Could not create post", error.message);
+    useSweetAlert("error", "Could not create post", error.message);
     console.error("Create post error", error);
   }
 }

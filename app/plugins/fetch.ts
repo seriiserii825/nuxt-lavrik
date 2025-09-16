@@ -7,7 +7,7 @@ export default defineNuxtPlugin({
 
     const config = useRuntimeConfig();
 
-    const api = $fetch.create({
+    const fetchApi = $fetch.create({
       baseURL: config.public.apiBase,
       onRequest({ request, options, error }) {
         options.headers.set("Content-type", "application/json");
@@ -25,7 +25,7 @@ export default defineNuxtPlugin({
     // Expose to useNuxtApp().$api
     return {
       provide: {
-        api,
+        fetchApi,
       },
     };
   },
