@@ -1,11 +1,18 @@
 <script setup lang="ts">
+import { FetchError } from "ofetch";
 import type { TLoginStore } from "~/types/TLoginStore";
+import type { TLoginStoreErrors } from "~/types/TLoginStoreErrors";
 
 const auth_store = useAuthStore();
 
 const form = ref<TLoginStore>({
   login: "admin",
   password: "password",
+});
+
+const errors = ref<TLoginStoreErrors>({
+  login: [],
+  password: [],
 });
 
 async function onSubmit() {
@@ -15,6 +22,11 @@ async function onSubmit() {
     auth_store.setToken(response.token);
     navigateTo("/");
   } catch (error) {
+    if (error instanceof FetchError) {
+      Object.assign(errors.value, useFormError(error, form.value));
+    } else {
+      console.error("Unexpected error:", error);
+    }
     auth_store.setUser(null);
     auth_store.setToken(null);
     console.error("Login failed:", error);
@@ -31,6 +43,7 @@ async function onSubmit() {
         type="text"
         id="login"
         placeholder="Enter your login"
+        :errors="errors.login"
         required />
 
       <UiInput
@@ -39,6 +52,7 @@ async function onSubmit() {
         type="password"
         id="password"
         placeholder="Enter your password"
+        :errors="errors.password"
         required />
 
       <!-- Submit Button -->
