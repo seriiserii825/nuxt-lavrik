@@ -39,7 +39,9 @@ const value = defineModel<string>({ default: "" });
 </script>
 <template>
   <div class="input">
-    <label class="block text-sm font-medium text-gray-700 mb-1" v-if="label" :for="id">{{ label }}</label>
+    <label class="block text-sm font-medium text-gray-700 mb-1" v-if="label" :for="id">
+      {{ label }}
+    </label>
     <input
       :id="id"
       v-model="value"
@@ -51,7 +53,7 @@ const value = defineModel<string>({ default: "" });
       :class="{ 'bg-gray-100 cursor-not-allowed': disabled }"
       class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
     <div v-if="errors && errors.length" class="input__message input__message--error">
-      <p v-for="(error, index) in errors" :key="index">{{ error }}</p>
+      <p v-for="(error, index) in errors" :key="index" class="text-red-600 text-sm">{{ error }}</p>
     </div>
   </div>
 </template>

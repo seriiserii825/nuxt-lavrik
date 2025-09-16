@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import type { TPostStore } from "~/types/TPostStore";
+import type { TPostStore, TPostStoreErrors } from "~/types/TPostStore";
+import { FetchError } from "ofetch";
 
 definePageMeta({
   middleware: ["auth"],
 });
+
+const errors = ref<TPostStoreErrors>({
+  title: [],
+  url: [],
+  content: [],
+});
+
 const form = ref<TPostStore>({
   title: "",
   url: "",
@@ -26,8 +34,11 @@ async function onSubmit() {
     console.log(response, "response");
     navigateTo("/posts");
   } catch (error) {
-    useSweetAlert("error", "Could not create post", error.message);
-    console.error("Create post error", error);
+    if (error instanceof FetchError) {
+      Object.assign(errors.value, useFormError(error, form.value));
+    } else {
+      console.error("Unexpected error:", error);
+    }
   }
 }
 </script>
@@ -41,6 +52,7 @@ async function onSubmit() {
         type="text"
         id="url"
         placeholder="Enter post title:"
+        :errors="errors.title"
         required />
 
       <UiInput
@@ -49,6 +61,7 @@ async function onSubmit() {
         type="text"
         id="url"
         placeholder="Enter post URL:"
+        :errors="errors.url"
         :disabled="true"
         required />
 
@@ -56,6 +69,7 @@ async function onSubmit() {
         v-model="form.content"
         label="Content"
         id="content"
+        :errors="errors.content"
         placeholder="Enter post content:"
         required />
 

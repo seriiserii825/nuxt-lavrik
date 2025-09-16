@@ -36,11 +36,7 @@ const value = defineModel<string>({ default: "" });
 
 <template>
   <div class="textarea">
-    <label
-      v-if="label"
-      :for="id"
-      class="block text-sm font-medium text-gray-700 mb-1"
-    >
+    <label v-if="label" :for="id" class="block text-sm font-medium text-gray-700 mb-1">
       {{ label }}
     </label>
 
@@ -51,11 +47,10 @@ const value = defineModel<string>({ default: "" });
       :placeholder="placeholder"
       :required="required"
       :rows="rows"
-      class="w-full px-4 py-2 border border-gray-300 rounded-md resize-y focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-    />
+      class="w-full px-4 py-2 border border-gray-300 rounded-md resize-y focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
 
     <div v-if="errors && errors.length" class="textarea__message textarea__message--error">
-      <p v-for="(error, index) in errors" :key="index">{{ error }}</p>
+      <p v-for="(error, index) in errors" :key="index" class="text-red-600 text-sm">{{ error }}</p>
     </div>
   </div>
 </template>

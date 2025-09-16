@@ -3,3 +3,9 @@ export type TPostStore = {
   url: string;
   content: string;
 };
+
+export type TPostStoreErrors = {
+  title: string[];
+  url: string[];
+  content: string[];
+};
