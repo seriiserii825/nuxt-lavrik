@@ -37,21 +37,21 @@ async function onSubmit() {
 
 <template>
   <BlockForm title="Login">
-    <form @submit.prevent="onSubmit" class="space-y-6">
+    <form class="space-y-6" @submit.prevent="onSubmit" >
       <UiInput
+        id="login"
         v-model="form.login"
         label="Login"
         type="text"
-        id="login"
         placeholder="Enter your login"
         :errors="errors.login"
         required />
 
       <UiInput
+        id="password"
         v-model="form.password"
         label="Password"
         type="password"
-        id="password"
         placeholder="Enter your password"
         :errors="errors.password"
         required />

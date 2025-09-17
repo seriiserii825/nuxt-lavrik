@@ -30,8 +30,7 @@ watch(
 
 async function onSubmit() {
   try {
-    const response = await useNuxtApp().$api.posts.add(form.value);
-    console.log(response, "response");
+    await useNuxtApp().$api.posts.add(form.value);
     navigateTo("/posts");
   } catch (error) {
     if (error instanceof FetchError) {
