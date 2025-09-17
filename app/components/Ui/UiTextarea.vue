@@ -29,6 +29,11 @@ defineProps({
     required: false,
     default: 4, // sensible default
   },
+  count_chars: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const value = defineModel<string>({ default: "" });
@@ -48,6 +53,10 @@ const value = defineModel<string>({ default: "" });
       :required="required"
       :rows="rows"
       class="w-full px-4 py-2 border border-gray-300 rounded-md resize-y focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
+
+    <div v-if="count_chars" class="text-right text-sm text-gray-500 mt-1">
+      {{ value.length }} characters
+    </div>
 
     <div v-if="errors && errors.length" class="textarea__message textarea__message--error">
       <p v-for="(error, index) in errors" :key="index" class="text-red-600 text-sm">{{ error }}</p>

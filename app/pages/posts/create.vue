@@ -25,7 +25,7 @@ watch(
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)+/g, "");
-  }
+  },
 );
 
 async function onSubmit() {
@@ -45,32 +45,33 @@ async function onSubmit() {
 
 <template>
   <BlockForm title="Create Post">
-    <form @submit.prevent="onSubmit" class="space-y-6">
+    <form class="space-y-6" @submit.prevent="onSubmit">
       <UiInput
+        id="url"
         v-model="form.title"
         label="Title"
         type="text"
-        id="url"
         placeholder="Enter post title:"
         :errors="errors.title"
         required />
 
       <UiInput
+        id="url"
         v-model="form.url"
         label="URL"
         type="text"
-        id="url"
         placeholder="Enter post URL:"
         :errors="errors.url"
         :disabled="true"
         required />
 
       <UiTextarea
+        id="content"
         v-model="form.content"
         label="Content"
-        id="content"
         :errors="errors.content"
         placeholder="Enter post content:"
+        :count_chars="true"
         required />
 
       <!-- Submit Button -->
