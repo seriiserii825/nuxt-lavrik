@@ -34,6 +34,11 @@ defineProps({
     required: false,
     default: false,
   },
+  required_chars_length: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
 const value = defineModel<string>({ default: "" });
@@ -54,8 +59,14 @@ const value = defineModel<string>({ default: "" });
       :rows="rows"
       class="w-full px-4 py-2 border border-gray-300 rounded-md resize-y focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
 
-    <div v-if="count_chars" class="text-right text-sm text-gray-500 mt-1">
-      {{ value.length }} characters
+    <div
+      v-if="count_chars"
+      class="text-right text-sm text-gray-500 mt-1"
+      :class="{
+        'text-red-600': required_chars_length > 0 && value.length < required_chars_length,
+      }">
+      <span>{{ value.length }} characters</span>
+      <span v-if="required_chars_length"> / {{ required_chars_length }}</span>
     </div>
 
     <div v-if="errors && errors.length" class="textarea__message textarea__message--error">

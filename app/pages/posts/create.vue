@@ -71,6 +71,7 @@ async function onSubmit() {
         :errors="errors.content"
         placeholder="Enter post content:"
         :count_chars="true"
+        :required_chars_length="25"
         required />
 
       <!-- Submit Button -->
