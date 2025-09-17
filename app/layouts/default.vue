@@ -3,7 +3,8 @@ const auth_store = useAuthStore();
 const { user } = storeToRefs(auth_store);
 function logout() {
   auth_store.logout();
-  navigateTo("/login");
+  const origin = window.location.origin;
+  window.location.href = `${origin}/login`;
 }
 </script>
 

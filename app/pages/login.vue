@@ -20,7 +20,8 @@ async function onSubmit() {
     const response = await useNuxtApp().$api.auth.login(form.value);
     auth_store.setUser(response.user);
     auth_store.setToken(response.token);
-    navigateTo("/");
+    const origin = window.location.origin;
+    window.location.href = origin;
   } catch (error) {
     if (error instanceof FetchError) {
       Object.assign(errors.value, useFormError(error, form.value));
