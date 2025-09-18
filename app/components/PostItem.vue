@@ -8,8 +8,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const created_at = useGetDate(props.post.createdAt);
 </script>
 
 <template>
@@ -21,7 +19,7 @@ const created_at = useGetDate(props.post.createdAt);
       By
       <span class="font-medium text-gray-700">{{ post.User.login }}</span>
       •
-      <time datetime="2025-09-12T14:20:00Z">{{ created_at }}</time>
+      <time datetime="2025-09-12T14:20:00Z"></time>
     </p>
     <p class="text-gray-700 mb-4 line-clamp-3">
       {{ post.content }}

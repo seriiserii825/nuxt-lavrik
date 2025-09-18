@@ -2,7 +2,7 @@
 const route = useRoute();
 const post_id = route.params.id;
 
-const { error, pending, data } = await useAsyncData("post", () =>
+const { error, pending, data } = await useAsyncData(`post-${post_id}`, () =>
   useNuxtApp().$api.posts.one(post_id as string)
 );
 let created_at = "";
