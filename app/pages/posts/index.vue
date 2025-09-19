@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // const { error, pending, data } = await useAsyncData("posts", () => useNuxtApp().$api.posts.all());
-const posts = dataOrFail(await useFetchApp("/posts"));
+const posts = dataOrFail(await useAsyncData("posts", () => useNuxtApp().$api.posts.all()));
 console.log("posts", posts);
 const auth_store = useAuthStore();
 </script>
