@@ -1,4 +1,5 @@
 export default function useGetDate(data: Date): string {
+
   return new Date(data).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",

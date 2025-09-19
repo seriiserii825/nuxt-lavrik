@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { error, pending, data } = await useAsyncData("posts", () => useNuxtApp().$api.posts.all());
+// const { error, pending, data } = await useAsyncData("posts", () => useNuxtApp().$api.posts.all());
+const posts = dataOrFail(await useFetchApp("/posts"));
+console.log("posts", posts);
 const auth_store = useAuthStore();
 </script>
 
@@ -14,10 +16,10 @@ const auth_store = useAuthStore();
         Create New Post
       </NuxtLink>
     </header>
-    <h2 v-if="pending">Loading: {{ pending }}</h2>
-    <div v-else-if="error" class="text-red-600">Error: {{ error.message }}</div>
-    <div v-else-if="data">
-      <PostItem v-for="post in data" :key="post.id" :post="post" />
+    <!-- <h2 v-if="pending">Loading: {{ pending }}</h2> -->
+    <!-- <div v-else-if="error" class="text-red-600">Error: {{ error.message }}</div> -->
+    <div v-if="posts">
+      <PostItem v-for="post in posts" :key="post.id" :post="post" />
     </div>
     <div v-else>No posts available.</div>
   </main>
