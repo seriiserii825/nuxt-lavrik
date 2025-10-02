@@ -19,9 +19,9 @@ export default defineNuxtPlugin({
         // options.headers.set("Authorization", "Bearer " + "mynewtoken");
       },
       async onResponseError({ response }) {
-        // if (response.status === 401) {
-        //   await nuxtApp.runWithContext(() => navigateTo("/login"));
-        // }
+        if (response.status == 401) {
+          nuxtApp.runWithContext(() => navigateTo("/auth/login"));
+        }
       },
     });
 

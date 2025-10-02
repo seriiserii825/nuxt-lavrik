@@ -24,9 +24,9 @@ defineProps({
     default: false,
   },
   errors: {
-    type: Array,
+    type: String,
     required: false,
-    default: () => [],
+    default: '',
   },
   required: {
     type: Boolean,
@@ -52,8 +52,8 @@ const value = defineModel<string>({ default: "" });
       :required="required"
       :class="{ 'bg-gray-100 cursor-not-allowed': disabled }"
       class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
-    <div v-if="errors && errors.length" class="input__message input__message--error">
-      <p v-for="(error, index) in errors" :key="index" class="text-red-600 text-sm">{{ error }}</p>
+    <div v-if="errors" class="input__message input__message--error">
+      <p class="text-red-600 text-sm">{{ errors }}</p>
     </div>
   </div>
 </template>
