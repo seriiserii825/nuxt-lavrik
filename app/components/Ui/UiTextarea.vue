@@ -15,9 +15,9 @@ defineProps({
     required: true,
   },
   errors: {
-    type: Array as () => string[],
+    type: String,
     required: false,
-    default: () => [],
+    default: "",
   },
   required: {
     type: Boolean,
@@ -66,11 +66,11 @@ const value = defineModel<string>({ default: "" });
         'text-red-600': required_chars_length > 0 && value.length < required_chars_length,
       }">
       <span>{{ value.length }} characters</span>
-      <span v-if="required_chars_length"> / {{ required_chars_length }}</span>
+      <span v-if="required_chars_length">/ {{ required_chars_length }}</span>
     </div>
 
-    <div v-if="errors && errors.length" class="textarea__message textarea__message--error">
-      <p v-for="(error, index) in errors" :key="index" class="text-red-600 text-sm">{{ error }}</p>
+    <div v-if="errors" class="textarea__message textarea__message--error">
+      <p class="text-red-600 text-sm">{{ errors }}</p>
     </div>
   </div>
 </template>
