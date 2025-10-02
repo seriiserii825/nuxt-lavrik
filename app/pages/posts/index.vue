@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const posts = dataOrFail(await useAsyncData("posts", () => useNuxtApp().$api.posts.all()));
-console.log("posts", posts);
+const { $api } = useNuxtApp();
+const posts = dataOrFail(await useAsyncData("posts", () => $api.posts.all()));
 const auth_store = useAuthStore();
 </script>
 

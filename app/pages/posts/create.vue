@@ -2,6 +2,8 @@
 import type { TPostStore, TPostStoreErrors } from "~/types/TPostStore";
 import { FetchError } from "ofetch";
 
+const { $api } = useNuxtApp();
+
 definePageMeta({
   middleware: ["auth"],
 });
@@ -25,12 +27,12 @@ watch(
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)+/g, "");
-  },
+  }
 );
 
 async function onSubmit() {
   try {
-    await useNuxtApp().$api.posts.add(form.value);
+    await $api.posts.add(form.value);
     navigateTo("/posts");
   } catch (error) {
     if (error instanceof FetchError) {

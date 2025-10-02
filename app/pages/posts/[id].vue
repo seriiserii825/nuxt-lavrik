@@ -2,9 +2,9 @@
 const route = useRoute();
 const post_id = route.params.id;
 
-const post = dataOrFail(
-  await useAsyncData(`post-${post_id}`, () => useNuxtApp().$api.posts.one(post_id as string))
-);
+const { $api } = useNuxtApp();
+
+const post = dataOrFail(useAsyncData(() => $api.posts.one(post_id as string)));
 
 let created_at = "";
 if (post.value) {
