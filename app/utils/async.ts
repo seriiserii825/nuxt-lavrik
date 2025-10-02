@@ -1,6 +1,8 @@
-type AsyncDataRes = Awaited<ReturnType<typeof useAsyncData>>;
-
-export const dataOrFail = (asyncDataRes: AsyncDataRes) => {
+export function dataOrFail<T extends Awaited<ReturnType<typeof useAsyncData<any, any>>>>(
+  asyncDataRes: T
+): T extends Awaited<ReturnType<typeof useAsyncData<infer R1, any>>>
+  ? Ref<Exclude<R1, undefined>>
+  : never {
   const { data, error } = asyncDataRes;
   if (error.value) {
     throw createError({
@@ -8,5 +10,5 @@ export const dataOrFail = (asyncDataRes: AsyncDataRes) => {
       fatal: true,
     });
   }
-  return data;
-};
+  return data as any;
+}

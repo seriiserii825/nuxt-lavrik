@@ -2,6 +2,8 @@
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+Get backend from [here](https://github.com/seriiserii825/nuxt-1-backend)
+
 ## Setup
 
 Make sure to install dependencies:
