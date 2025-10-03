@@ -12,3 +12,16 @@ export function dataOrFail<T extends Awaited<ReturnType<typeof useAsyncData<any,
   }
   return data as any;
 }
+
+export function critical<T extends Awaited<ReturnType<typeof useAsyncData<any, any>>>>(
+  asyncDataRes: T
+) {
+  const result = asyncDataRes;
+  if (result.error.value) {
+    throw createError({
+      ...result.error.value,
+      fatal: true,
+    });
+  }
+  return result;
+}

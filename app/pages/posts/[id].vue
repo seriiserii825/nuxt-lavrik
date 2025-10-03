@@ -4,7 +4,7 @@ const post_id = route.params.id;
 
 const { $api } = useNuxtApp();
 
-const post = dataOrFail(useAsyncData(() => $api.posts.one(post_id as string)));
+const { data: post, error } = critical(useAsyncData(() => $api.posts.one(post_id as string)));
 
 let created_at = "";
 if (post.value) {
