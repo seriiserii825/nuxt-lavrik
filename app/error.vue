@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { NuxtError } from "#app";
 
+const is_dev = import.meta.dev;
+
 const props = defineProps({
   error: {
     type: Object as () => NuxtError,
@@ -9,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <pre v-if="error">{{ JSON.stringify(error, null, 2) }}</pre>
+  <pre v-if="error && is_dev">{{ JSON.stringify(error, null, 2) }}</pre>
   <div v-if="error" class="bg-white p-8 rounded shadow-md text-center">
     <h1 class="text-4xl font-bold mb-4">Error {{ error.statusCode }}</h1>
     <p class="text-lg mb-4">{{ error.message }}</p>
