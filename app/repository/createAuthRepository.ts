@@ -1,3 +1,4 @@
+import type {TCheckResponse} from "~/types/TCheckResponse";
 import type { TLoginResponse } from "~/types/TLoginResponse";
 import type { TLoginStore } from "~/types/TLoginStore";
 
@@ -8,6 +9,9 @@ export function createAuthRepository(appFetch: typeof $fetch) {
         method: "POST",
         body: JSON.stringify(body),
       });
+    },
+    check() {
+      return appFetch<TCheckResponse>("/auth/check");
     },
   };
 }
