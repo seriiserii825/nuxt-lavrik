@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import useForm from '~/composables/useForm';
+
 const { $api } = useNuxtApp();
 
 definePageMeta({
   middleware: ["auth"],
 });
-
 const { form, errors, send, pending } = useForm(
   $api.posts.add,
   {
