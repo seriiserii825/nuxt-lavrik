@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { $api } = useNuxtApp();
 const posts = dataOrFail(await useAsyncData("posts", () => $api.posts.all()));
-const auth_store = useAuthStore();
 </script>
 
 <template>
@@ -9,8 +8,7 @@ const auth_store = useAuthStore();
   <main class="container mx-auto px-6 py-6">
     <header class="mb-8">
       <NuxtLink
-        v-if="auth_store.token"
-        to="/posts/create"
+        to="/office/posts/create"
         class="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700">
         Create New Post
       </NuxtLink>

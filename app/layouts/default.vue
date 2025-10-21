@@ -16,7 +16,8 @@ function logout() {
         <nav class="menu space-x-6">
           <NuxtLink to="/" class="hover:text-indigo-600">Home</NuxtLink>
           <NuxtLink to="/posts" class="hover:text-indigo-600">Posts</NuxtLink>
-          <a href="/post" class="hover:text-indigo-600">Post</a>
+          <NuxtLink to="/office" class="hover:text-indigo-600">Office</NuxtLink>
+          <NuxtLink to="/auth/login" class="hover:text-indigo-600">Login</NuxtLink>
         </nav>
         <button
           v-if="user"
@@ -26,7 +27,7 @@ function logout() {
         </button>
         <NuxtLink
           v-else
-          to="/login"
+          to="/auth/login"
           class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
           Login
         </NuxtLink>
