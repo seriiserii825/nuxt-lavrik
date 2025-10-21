@@ -17,5 +17,8 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ["./app/store/**"],
   },
+  routeRules: {
+    "/office/**": { ssr: false },
+    "/auth/**": { ssr: false },
+  },
 });
-
