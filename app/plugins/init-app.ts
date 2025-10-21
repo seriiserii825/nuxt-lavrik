@@ -5,12 +5,16 @@ export default defineNuxtPlugin({
   async setup() {
     const { $api } = useNuxtApp();
     const auth_store = useAuthStore();
-    const response = await $api.auth.check();
-    if (response.auth){
-      const user = response.user;
-      auth_store.setUser(user);
-    }else{
-      response.auth;
+    try {
+      const response = await $api.auth.check();
+      if (response.auth) {
+        const user = response.user;
+        auth_store.setUser(user);
+      } else {
+        response.auth;
+      }
+    } catch (error) {
+      alert("Server error. Please try again later.");
     }
   },
 });

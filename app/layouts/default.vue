@@ -4,7 +4,7 @@ const { user } = storeToRefs(auth_store);
 function logout() {
   auth_store.logout();
   const origin = window.location.origin;
-  window.location.href = `${origin}/login`;
+  window.location.href = `${origin}/auth/login`;
 }
 </script>
 
