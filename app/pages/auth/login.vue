@@ -10,7 +10,8 @@ const { form, errors, send, pending } = useForm(
   },
   (res) => {
     auth_store.setUser(res.user);
-    auth_store.setToken(res.token);
+    const cookies = useCookie("token");
+    cookies.value = res.token;
     navigateTo("/");
   }
 );
